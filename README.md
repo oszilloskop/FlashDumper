@@ -12,6 +12,7 @@ Das Skript ist z.Z. nur für die Verwendung auf einem Raspberry Pi, in Kombinati
 - Bereits abgespeicherte Speicherabbilder können nachträglich zum Flashen verwendet werden.
 
 ![](https://user-images.githubusercontent.com/1434390/62417464-6b93d480-b650-11e9-8998-57a589559cf7.png)
+![](https://user-images.githubusercontent.com/1434390/62417713-26bf6c00-b657-11e9-8a6a-2a2a428f024c.png)
 ![](https://user-images.githubusercontent.com/1434390/62417465-6e8ec500-b650-11e9-8e13-fa6db153b994.png)
 ---
 
