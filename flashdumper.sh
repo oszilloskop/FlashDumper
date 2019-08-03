@@ -82,7 +82,7 @@ do
                 "router"            "Auswahl des Router-Modells" \
                 "mac_manuell"       "MAC-Adresse des Routers" \
                 "flashsize"         "Speicherkapazität des neuen Flash-Bausteins" \
-                "firmware"          "Zu verwendende Basis-Firmware" \
+                "firmware"          "Zu verwendende Basis-Firmware (OpenWrt/Gluon Sysupgrade-Firmware)" \
                 "auflistung"        "Zusammenfassung der Einstellungen" \
                 "auslesen"          "Alten Flash-Baustein auslesen (inkl. Verify) und den Inhalt abspeichern" \
                 "erstellen"         "Neues Flash-Speicherabbild generieren" \
@@ -430,7 +430,7 @@ printf $HWID | dd conv=notrunc ibs=1 obs=256 seek=509 count=8 of="$OUTFILE"
 echo "sync..."
 sync
 dialog --title "$TITEL" --colors\
-       --msgbox "\nDas $FLASHSIZE Flash-Speicherabbild wurde abgespeichert als\n\Zb./$OUTFILE_MSGBOX\Zn" 18 79
+       --msgbox "\nDas generierte $FLASHSIZE Flash-Speicherabbild wurde abgespeichert als\n\Zb./$OUTFILE_MSGBOX\Zn" 18 79
 
 }
 
