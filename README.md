@@ -11,6 +11,8 @@ Das Skript ist z.Z. nur für die Verwendung auf einem Raspberry Pi, in Kombinati
 - Das Skript speichert die ausgelesenen Router-Flash-Dumps und die generierten Speicherabbilder in separaten Ordnern.
 - Bereits abgespeicherte Speicherabbilder können nachträglich zum Flashen verwendet werden.
 
+![](https://user-images.githubusercontent.com/1434390/62417464-6b93d480-b650-11e9-8998-57a589559cf7.png)
+![](https://user-images.githubusercontent.com/1434390/62417465-6e8ec500-b650-11e9-8e13-fa6db153b994.png)
 ---
 
 # Abhängigkeiten
