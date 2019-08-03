@@ -28,7 +28,7 @@ DUMPFILENAME="flashdump.bin"
 #-------------------------------------------------------------------------------
 # UI Dialog Defaults
 #-------------------------------------------------------------------------------
-TITEL="Raspberry Pi Flash-Tool für TL-WR841 Router"
+TITEL="Raspberry Pi Flash-Dump-Tool für TL-WR841 Router"
 UI_ITEM_HM="setup"
 UI_ITEM_SM="download"
 MAC_ADR="tbd"
