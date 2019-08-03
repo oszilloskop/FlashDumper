@@ -5,7 +5,7 @@ TP-Link WR841N: RAM und Flash aufrüsten"](https://www.heise.de/select/ct/2019/1
 Das Skript ist z.Z. nur für die Verwendung auf einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen SPI-Kontaktierung, vorgesehen.
 
 
-- Das Skript fragt für die Benutzung des Tools ˚flashrom˚ das Sudo-Passwort ab. Das Passwort wird nicht gespeichert.
+- Das Skript fragt für die Benutzung des Tools `"flashrom"` das Sudo-Passwort ab. Das Passwort wird nicht gespeichert.
 - Das Skript ermöglicht automatisierte das Herunterladen von U-Boot-Bootloader-Images aus dem Internet.
 - Zu verwendene Freifunk-Sysupgrade-Images müssen vorab manuell in einen Ordnern abgelegt werden.
 - Das Skript speichert die ausgelesenen Router-Flash-Dumps und die generierten Speicherabbilder in separaten Ordnern.
