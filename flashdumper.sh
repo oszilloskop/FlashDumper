@@ -84,9 +84,9 @@ do
                 "flashsize"         "Speicherkapazität des neuen Flash-Bausteins" \
                 "firmware"          "Zu verwendende Basis-Firmware (OpenWrt/Gluon Sysupgrade-Firmware)" \
                 "auflistung"        "Zusammenfassung der Einstellungen" \
-                "auslesen"          "Alten Flash-Baustein auslesen (inkl. Verify) und den Inhalt abspeichern" \
+                "auslesen"          "Alten Flash-Baustein auslesen (inkl. Verify) und den Inhalt speichern" \
                 "erstellen"         "Neues Flash-Speicherabbild generieren" \
-                "beschreiben"       "Neuen Flash-Baustein mit gerade generiertem Speicherabbild beschreiben" \
+                "beschreiben"       "Neuen Flash-Baustein mit aktuell generiertem Speicherabbild beschreiben" \
                 "reset"             "Router-Angaben zurücksetzen" \
                 3>&1 1>&2 2>&3)
 
