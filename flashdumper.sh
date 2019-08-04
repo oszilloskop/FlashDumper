@@ -305,7 +305,7 @@ else
          --prgbox "
          echo
          echo Beschreiben des neuen Flash-Bausteins mit dem Inhalt aus
-         echo ".$NEWFLASHDIRECTORY$ABBILD"
+         echo "./$NEWFLASHDIRECTORY/$ABBILD"
          echo
          echo Bitte mehrere Minuten warten...
          echo
