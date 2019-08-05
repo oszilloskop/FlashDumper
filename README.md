@@ -7,8 +7,8 @@ Das Skript ist z.Z. nur für die Verwendung auf einem Raspberry Pi, in Kombinati
 
 - Das Skript fragt für die Benutzung des Tools `"flashrom"` das Sudo-Passwort ab. Das Passwort wird nicht gespeichert.
 - Das Skript ermöglicht automatisierte das Herunterladen von U-Boot-Bootloader-Images aus dem Internet.
-- Zu verwendene Freifunk-Sysupgrade-Images müssen vorab manuell in einen Ordnern abgelegt werden.
-- Das Skript speichert die ausgelesenen Router-Flash-Dumps und die generierten Speicherabbilder in separaten Ordnern.
+- Zu verwendene Freifunk-Sysupgrade-Images müssen vorab manuell in einen Ordner abgelegt werden.
+- Das Skript speichert die ausgelesenen Router-Flash-Dumps und die generierten Speicherabbilder in separaten Ordner.
 - Bereits abgespeicherte Speicherabbilder können nachträglich zum Flashen verwendet werden.
 
 ![](https://user-images.githubusercontent.com/1434390/62417464-6b93d480-b650-11e9-8998-57a589559cf7.png)
