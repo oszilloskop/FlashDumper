@@ -1,5 +1,4 @@
 #!/bin/bash
-LANG=C
 histchars=
 
 #-------------------------------------------------------------------------------
@@ -424,7 +423,7 @@ cd $FLASHDUMPDIRECTORY/$ROUTERFOLDER
 cp  ../../$UBOOTDIRECTORY/$UBOOTFILE uboot.bin
 cp  ../../$FIRMWAREDIRECTORY/$FIRMWARE gluonsysupgrade.bin
 dd ibs=4k skip=1008 if=$DUMPFILENAME of=artdump.bin
-dd if=/dev/zero ibs=4k count=$COUNT_ZERO | tr "\000" "\377" > "$OUTFILE"
+dd if=/dev/zero ibs=4k count=$COUNT_ZERO | LANG=C tr "\000" "\377" > "$OUTFILE"
 dd conv=notrunc obs=4k seek=$SEEK_ART if=artdump.bin of="$OUTFILE"
 dd conv=notrunc  if=uboot.bin of="$OUTFILE"
 dd conv=notrunc obs=4k seek=32 if=gluonsysupgrade.bin of="$OUTFILE"
