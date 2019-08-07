@@ -14,6 +14,7 @@ histchars=
 # "flashrom"-Tool Parameter
 #-------------------------------------------------------------------------------
 FLASHROM_PROGRAMMER_COMMAND="linux_spi:dev=/dev/spidev0.0,spispeed=1000"
+SUDO_CMD="sudo -S"
 
 #-------------------------------------------------------------------------------
 # Ordner und Dateinamen
@@ -311,7 +312,7 @@ else
          echo
          echo Bitte mehrere Minuten warten...
          echo
-         echo "$PASSWORD" | sudo -S flashrom -p "$FLASHROM_PROGRAMMER_COMMAND" -w $ABBILD
+         echo "$PASSWORD" | $SUDO_CMD flashrom -p "$FLASHROM_PROGRAMMER_COMMAND" -w $ABBILD
          echo
          echo Abarbeitung abgeschlossen.
          echo Bitte obige Text-Ausgabe überprüfen!
@@ -369,11 +370,11 @@ dialog --title "$TITEL" \
        echo Bitte mehrere Minuten warten...
        echo
        echo Lesen:
-       echo "$PASSWORD" | sudo -S flashrom -p "$FLASHROM_PROGRAMMER_COMMAND" -r $DUMPFILENAME
-       sudo chown $USER: "$DUMPFILENAME"
+       echo "$PASSWORD" | $SUDO_CMD flashrom -p "$FLASHROM_PROGRAMMER_COMMAND" -r $DUMPFILENAME
+       echo "$PASSWORD" | $SUDO_CMD chown $USER: "$DUMPFILENAME"
        echo
        echo Verify:
-       echo "$PASSWORD" | sudo -S flashrom -p "$FLASHROM_PROGRAMMER_COMMAND" -v $DUMPFILENAME
+       echo "$PASSWORD" | $SUDO_CMD flashrom -p "$FLASHROM_PROGRAMMER_COMMAND" -v $DUMPFILENAME
        echo
        echo Die Dump-Datei wurde abgespeichert als
        echo ./$FLASHDUMPDIRECTORY/$ROUTERFOLDER/$DUMPFILENAME
@@ -471,7 +472,7 @@ fi
          echo
          echo Bitte mehrere Minuten warten...
          echo
-         echo "$PASSWORD" | sudo -S flashrom -p "$FLASHROM_PROGRAMMER_COMMAND" -w $INFILE
+         echo "$PASSWORD" | $SUDO_CMD flashrom -p "$FLASHROM_PROGRAMMER_COMMAND" -w $INFILE
          echo
          echo Abarbeitung abgeschlossen.
          echo Bitte obige Text-Ausgabe überprüfen!
@@ -518,7 +519,7 @@ dialog --title "$TITEL" \
        --prgbox "
        echo Bitte warten...
        echo
-       echo $PASSWORD | sudo -S flashrom -p "$FLASHROM_PROGRAMMER_COMMAND"
+       echo $PASSWORD | $SUDO_CMD flashrom -p "$FLASHROM_PROGRAMMER_COMMAND"
        echo
        echo Abarbeitung abgeschlossen.
        echo Bitte obige Text-Ausgabe überprüfen!
