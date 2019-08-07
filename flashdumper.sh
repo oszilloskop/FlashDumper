@@ -167,10 +167,15 @@ done
 #-------------------------------------------------------------------------------
 # UI: Passworteingabe
 #-------------------------------------------------------------------------------
+exec 3>&1
 UI_passwort() {
-PASSWORD=$(dialog --title "$TITEL" --nocancel --insecure \
+PASSWORD=$(dialog --title "$TITEL" --cancel-button "Zurück" --insecure \
            --passwordbox "Das Tool 'flashrom' muss mit Root-Rechten ausgeführt werden. Dafür wird das sudo-Passwort benötigt." 9 78 $PASSWORD \
            3>&1 1>&2 2>&3)
+response=$?
+if [[ $response == "255" ]] || [[ $response == "1" ]]; then 
+  PASSWORD=""
+fi           
 }
 
 
@@ -299,9 +304,7 @@ else
   fi
   
   if [[ $PASSWORD == "" ]]; then
-    dialog --title "\Z1Fehler" --colors \
-           --msgbox "\nEs wurde noch kein \Zbsudo-Passwort\Zn angegeben. Dieses wird jedoch benötigt um das Tool 'flashrom' mit Root-Rechten ausführen zu können." 8 78
-    return
+    UI_passwort
   fi
   
   dialog --title "$TITEL" \
@@ -334,12 +337,6 @@ if [[ $ROUTER == "tbd" ]] || [[ $MAC_ADR == "tbd" ]] || [[ $FLASHSIZE == "tbd" ]
   return
 fi
 
-if [[ $PASSWORD == "" ]]; then
-  dialog --title "\Z1Fehler" --colors \
-         --msgbox "\nEs wurde noch kein \Zbsudo-Passwort\Zn angegeben. Dieses wird jedoch benötigt um das Tool 'flashrom' mit Root-Rechten ausführen zu können." 8 78
-  return
-fi
-
 ROUTERFOLDER="$ROUTER-$MAC_ADR"
 
 if [[ ! -d $FLASHDUMPDIRECTORY/$ROUTERFOLDER ]]; then
@@ -362,6 +359,10 @@ if [ -f "$DUMPFILENAME" ]; then
         return
         ;;
   esac
+fi
+
+if [[ $PASSWORD == "" ]]; then
+ UI_passwort
 fi
 
 USER=$(whoami)
@@ -459,9 +460,7 @@ if [ ! -f "$INFILE" ]; then
 fi
 
 if [[ $PASSWORD == "" ]]; then
-  dialog --title "\Z1Fehler" --colors \
-         --msgbox "\nEs wurde noch kein \Zbsudo-Passwort\Zn angegeben. Dieses wird jedoch benötigt um das Tool 'flashrom' mit Root-Rechten ausführen zu können." 8 78
-  return
+  UI_passwort
 fi
 
   dialog --title "$TITEL" \
@@ -510,9 +509,7 @@ cd "$UBOOTDIRECTORY"
 #-------------------------------------------------------------------------------
 linktest() {
 if [[ $PASSWORD == "" ]]; then
-  dialog --title "\Z1Fehler" --colors \
-         --msgbox "\nEs wurde noch kein sudo-Passwort angegeben. Dieses wird jedoch benötigt um das Tool 'flashrom' mit Root-Rechten ausführen zu können. " 8 78
-  return
+  UI_passwort
 fi
 
 dialog --title "$TITEL" \
