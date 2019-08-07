@@ -77,7 +77,6 @@ do
   UI_ITEM_HM=$( dialog --title "$TITEL" --cancel-button "Exit" --no-tags --default-item "$UI_ITEM_HM" \
                 --menu "Hauptmenü" 20 78 13 \
                 "setup"             "Setup" \
-                "passwort"          "Eingabe des Raspberry Pi 'sudo'-Passwortes" \
                 "linktest"          "Elektrische Verbindung zum Flash-Baustein testen" \
                 "beschreiben_liste" "Optional einen Flash-Baustein mit Speicherabbild aus Ordner beschreiben" \
                 "router"            "Auswahl des Router-Modells" \
@@ -100,9 +99,6 @@ fi
   case "$UI_ITEM_HM" in
     setup)
                 UI_setup
-                ;;
-    passwort)
-                UI_passwort
                 ;;
     router)
                 UI_router_hardware
@@ -145,15 +141,26 @@ done
 # UI: Tool-Setup
 #-------------------------------------------------------------------------------
 UI_setup() {
+exec 3>&1
 while [ 1 ]
 do
-  UI_ITEM_SM=$( dialog --title "$TITEL" --notags --nocancel --default-item "$UI_ITEM_SM" \
+
+  UI_ITEM_SM=$( dialog --title "$TITEL" --notags --cancel-button "Zurück" --default-item "$UI_ITEM_SM" \
                 --menu "Setup" 19 78 11 \
-                "download" "Download aller 841'er U-Boot Bootloader (Internet notwendig)" \
-                "zurueck" "<-- Zurück" \
+                "download"  "Download aller 841'er U-Boot Bootloader (Internet notwendig)" \
+                "passwort"  "Eingabe des Raspberry Pi 'sudo'-Passwortes" \
+                "zurueck"   "<-- Zurück" \
                 3>&1 1>&2 2>&3)
 
+response=$?
+if [[ $response == "255" ]] || [[ $response == "1" ]]; then 
+  break
+fi                
+
   case "$UI_ITEM_SM" in
+    passwort)
+                UI_passwort
+                ;;
     download)
                 download
                 ;;
