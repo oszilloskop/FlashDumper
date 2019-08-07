@@ -287,11 +287,6 @@ if [[ $WC -eq 0 ]]; then
          --msgbox "\nDer Ordner \Zb./$NEWFLASHDIRECTORY\Zn enthält keine Dateien." 8 78
   return
 else
-  if [[ $PASSWORD == "" ]]; then
-    dialog --title "\Z1Fehler" --colors \
-           --msgbox "\nEs wurde noch kein \Zbsudo-Passwort\Zn angegeben. Dieses wird jedoch benötigt um das Tool 'flashrom' mit Root-Rechten ausführen zu können." 8 78
-    return
-  fi
   exec 3>&1
   ABBILD=$(dialog  --title "$TITEL" --cancel-button "Zurück" --no-tags --default-item "$ABBILD"\
                     --menu "Speicherabbilder in ./$NEWFLASHDIRECTORY" 19 78 11 ${FLASHFILES[@]} \
@@ -301,6 +296,13 @@ else
   if [[ $response == "255" ]] || [[ $response == "1" ]]; then 
     return
   fi
+  
+  if [[ $PASSWORD == "" ]]; then
+    dialog --title "\Z1Fehler" --colors \
+           --msgbox "\nEs wurde noch kein \Zbsudo-Passwort\Zn angegeben. Dieses wird jedoch benötigt um das Tool 'flashrom' mit Root-Rechten ausführen zu können." 8 78
+    return
+  fi
+  
   dialog --title "$TITEL" \
          --prgbox "
          echo
@@ -325,15 +327,15 @@ fi
 auslesen() {
 cd "$WORKINGDIRECTORY"
 
-if [[ $PASSWORD == "" ]]; then
-  dialog --title "\Z1Fehler" --colors \
-         --msgbox "\nEs wurde noch kein \Zbsudo-Passwort\Zn angegeben. Dieses wird jedoch benötigt um das Tool 'flashrom' mit Root-Rechten ausführen zu können." 8 78
-  return
-fi
-
 if [[ $ROUTER == "tbd" ]] || [[ $MAC_ADR == "tbd" ]] || [[ $FLASHSIZE == "tbd" ]]; then
   dialog --title "\Z1Fehler" --colors \
          --msgbox "\nDas \ZbRoutermodell\Zn, die \ZbMAC-Adresse\Zn und/oder die \ZbFlash-Bausteingröße\Zn wurden noch nicht vorgegeben." 8 78
+  return
+fi
+
+if [[ $PASSWORD == "" ]]; then
+  dialog --title "\Z1Fehler" --colors \
+         --msgbox "\nEs wurde noch kein \Zbsudo-Passwort\Zn angegeben. Dieses wird jedoch benötigt um das Tool 'flashrom' mit Root-Rechten ausführen zu können." 8 78
   return
 fi
 
