@@ -74,7 +74,7 @@ UI_hauptmenue() {
 exec 3>&1
 while [ 1 ]
 do
-  UI_ITEM_HM=$( dialog --title "$TITEL" --cancel-button "Exit" --no-tags --default-item "$UI_ITEM_HM" \
+  UI_ITEM_HM=$( dialog --title "$TITEL" --cancel-button "Beenden" --no-tags --default-item "$UI_ITEM_HM" \
                 --menu "Hauptmenü" 20 78 13 \
                 "setup"             "Setup" \
                 "linktest"          "Elektrische Verbindung zum Flash-Baustein testen" \
@@ -149,7 +149,6 @@ do
                 --menu "Setup" 19 78 11 \
                 "download"  "Download aller 841'er U-Boot Bootloader (Internet notwendig)" \
                 "passwort"  "Eingabe des Raspberry Pi 'sudo'-Passwortes" \
-                "zurueck"   "<-- Zurück" \
                 3>&1 1>&2 2>&3)
 
 response=$?
