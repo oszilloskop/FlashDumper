@@ -14,6 +14,7 @@ histchars=
 # "flashrom"-Tool Parameter
 #-------------------------------------------------------------------------------
 FLASHROM_PROGRAMMER_PARAMETER="linux_spi:dev=/dev/spidev0.0,spispeed=1000"
+FLASHROM_PROGRAMMER="linux_spi"
 SUDO_CMD="sudo -S"
 
 #-------------------------------------------------------------------------------
@@ -25,13 +26,14 @@ FIRMWAREDIRECTORY="basis-firmware"
 FLASHDUMPDIRECTORY="router-flash-dumps"
 NEWFLASHDIRECTORY="flash-modified"
 DUMPFILENAME="flashdump.bin"
+INTERFACECONFIGFILENAME="$WORKINGDIRECTORY/interface.cfg"
 
 #-------------------------------------------------------------------------------
 # UI Dialog Defaults
 #-------------------------------------------------------------------------------
-TITEL="Raspberry Pi Flash-Dump-Tool für TL-WR841 Router"
+TITEL="Flash-Dump-Tool für TL-WR841 Hardware-Mods"
 UI_ITEM_HM="setup"
-UI_ITEM_SM="download"
+UI_ITEM_SM="programmer"
 MAC_ADR="tbd"
 MAC_FORMAT1="tbd"
 MAC_FORMAT2="tbd"
@@ -66,6 +68,12 @@ fi
 if [[ ! -d "$NEWFLASHDIRECTORY" ]]; then
   mkdir "$NEWFLASHDIRECTORY"
 fi
+
+if [[ -f "$INTERFACECONFIGFILENAME" ]]; then
+  FLASHROM_PROGRAMMER=$(sed -n '1p' "$INTERFACECONFIGFILENAME")
+  FLASHROM_PROGRAMMER_PARAMETER=$(sed -n '2p' "$INTERFACECONFIGFILENAME")
+  SUDO_CMD=$(sed -n '3p' "$INTERFACECONFIGFILENAME")
+fi  
 
 #-------------------------------------------------------------------------------
 # UI: Hauptmenü
@@ -147,24 +155,29 @@ do
 
   UI_ITEM_SM=$( dialog --title "$TITEL" --notags --cancel-button "Zurück" --default-item "$UI_ITEM_SM" \
                 --menu "Setup" 19 78 11 \
-                "download"  "Download aller 841'er U-Boot Bootloader (Internet notwendig)" \
-                "passwort"  "Eingabe des Raspberry Pi 'sudo'-Passwortes" \
+                "programmer" "Auswahl des Flash-Programmer-Interface" \
+                "linktest"   "Elektrische Verbindung zum Flash-Baustein testen" \
+                "download"   "Download aller 841'er U-Boot Bootloader (Internet notwendig)" \
+                "passwort"   "Eingabe des Raspberry Pi 'sudo'-Passwortes" \
                 3>&1 1>&2 2>&3)
 
 response=$?
 if [[ $response == "255" ]] || [[ $response == "1" ]]; then 
   break
-fi                
+fi
 
   case "$UI_ITEM_SM" in
-    passwort)
-                UI_passwort
+    programmer)
+                UI_programmer
+                ;;
+    linktest)
+                linktest
                 ;;
     download)
                 download
                 ;;
-    zurueck)
-                break
+    passwort)
+                UI_passwort
                 ;;
   esac
 done
@@ -178,10 +191,54 @@ UI_passwort() {
 PASSWORD=$(dialog --title "$TITEL" --cancel-button "Zurück" --insecure \
            --passwordbox "Das Tool 'flashrom' muss mit Root-Rechten ausgeführt werden. Dafür wird das sudo-Passwort benötigt." 9 78 $PASSWORD \
            3>&1 1>&2 2>&3)
+
 response=$?
 if [[ $response == "255" ]] || [[ $response == "1" ]]; then 
   PASSWORD=""
-fi           
+fi
+
+}
+
+#-------------------------------------------------------------------------------
+# UI: Auswahl Programmer-Interface
+#-------------------------------------------------------------------------------
+UI_programmer() {
+exec 3>&1
+AUSWAHL=$(dialog --title "$TITEL" --notags --nocancel --default-item "$FLASHROM_PROGRAMMER"\
+           --menu "Flash-Programmer-Interface" 19 78 10 \
+           "linux_spi"      "Zugriff über Raspberry Pi GPIO (default)" \
+           "dummy"          "Dummy-Programmer mit simuliertem 4MByte Flash-Baustein" \
+           "ch341a_spi"     "USB-Programmer mit CH341A-Baustein" \
+           "ft2232_spi"     "USB-Programmer mit ft2232-Baustein" \
+           "dediprog"       "USB-Programmer Dediprog SF100" \
+           "usbblaster_spi" "USB-Programmer Altera USB-Blaster" \
+           "pickit2_spi"    "USB-Programmer Microchip PICkit2" \
+           "digilent_spi"   "USB-Programmer iCEblink40 development boards" \
+           "serprog"        "Programmer mit serprog-Unterstützung (u.a. einige Arduino-Boards)" \
+           3>&1 1>&2 2>&3)
+
+response=$?
+if [[ $response == "255" ]] || [[ $response == "1" ]]; then
+  return
+fi
+
+FLASHROM_PROGRAMMER=$AUSWAHL
+FLASHROM_PROGRAMMER_PARAMETER=""
+SUDO_CMD=""
+
+if [[ $FLASHROM_PROGRAMMER == "linux_spi" ]]; then
+  FLASHROM_PROGRAMMER_PARAMETER="$FLASHROM_PROGRAMMER:dev=/dev/spidev0.0,spispeed=1000"
+  SUDO_CMD="sudo -S"
+
+elif [[ $FLASHROM_PROGRAMMER == "dummy" ]]; then
+  FLASHROM_PROGRAMMER_PARAMETER="$FLASHROM_PROGRAMMER:emulate=SST25VF032B"
+
+fi
+
+echo "$FLASHROM_PROGRAMMER" > "$INTERFACECONFIGFILENAME"
+echo "$FLASHROM_PROGRAMMER_PARAMETER" >> "$INTERFACECONFIGFILENAME"
+echo "$SUDO_CMD" >> "$INTERFACECONFIGFILENAME"
+
 }
 
 
@@ -189,38 +246,56 @@ fi
 # UI: Routerauswahl
 #-------------------------------------------------------------------------------
 UI_router_hardware() {
-ROUTER=$(dialog --title "$TITEL" --notags --nocancel --default-item "$ROUTER" \
-         --menu "Router-Modell\n(Auswahl mit Space-Taste)" 19 78 10 \
+exec 3>&1
+AUSWAHL=$(dialog --title "$TITEL" --notags --nocancel --default-item "$ROUTER" \
+         --menu "Router-Modell\n" 19 78 10 \
          "tbd" "Keine Auswahl" \
          "wr841n-v8" "Tl-WR841N/ND v8 " \
          "wr841n-v9" "Tl-WR841N/ND v9 " \
          "wr841n-v10" "Tl-WR841N/ND v10 " \
          "wr841n-v11" "Tl-WR841N/ND v11 " \
          3>&1 1>&2 2>&3)
+response=$?
+if [[ $response == "255" ]] || [[ $response == "1" ]]; then
+  return
+fi
+
+ROUTER=$AUSWAHL
 }
 
 #-------------------------------------------------------------------------------
 # UI: Einstellen der Flash-Bausteingröße
 #-------------------------------------------------------------------------------
 UI_flash_size() {
-FLASHSIZE=$(dialog --title "$TITEL" --notags --nocancel --default-item "$FLASHSIZE" \
-            --menu "Speichergröße Flash-Baustein\n(Auswahl mit Space-Taste)" 19 78 10 \
+AUSWAHL=$(dialog --title "$TITEL" --notags --nocancel --default-item "$FLASHSIZE" \
+            --menu "Speichergröße Flash-Baustein\n" 19 78 10 \
             "tbd" "Keine Auswahl" \
             "8MB" "8 MByte / 64 Mbit " \
             "16MB" "16 MByte / 128 Mbit " \
             3>&1 1>&2 2>&3)
+response=$?
+if [[ $response == "255" ]] || [[ $response == "1" ]]; then
+  return
+fi
+
+FLASHSIZE=$AUSWAHL
 }
 
 #-------------------------------------------------------------------------------
 # UI: Eingabe und formatierung der MAC-Adresse
 #-------------------------------------------------------------------------------
 UI_mac_adr() {
-MAC_FORMAT2=$(dialog --title "$TITEL" --nocancel \
+exec 3>&1
+EINGABE=$(dialog --title "$TITEL" --nocancel \
               --inputbox "12 stellige MAC-Adresse des Routers (mit oder ohne Separatoren)" 8 78 "${MAC_FORMAT2//tbd/}" \
               3>&1 1>&2 2>&3)
+response=$?
+if [[ $response == "255" ]] || [[ $response == "1" ]]; then
+  return
+fi
 
 # Ggf vorhandene Trennzeichen/Separatoren entfernen (':', '-' und ' ')
-MAC_ADR="$MAC_FORMAT2"
+MAC_ADR="$EINGABE"
 MAC_ADR=$(echo "${MAC_ADR//:/}")
 MAC_ADR=$(echo "${MAC_ADR//-/}")
 MAC_ADR=$(echo "${MAC_ADR// /}")
@@ -237,7 +312,7 @@ if [ ${#MAC_ADR} -ne 12 ]; then
   UI_mac_adr  # Erneute Eingabeaufforderung
 else
 
-# MAC-Adresse in unterschiedlichen Formaten (':' '-') speichern. 
+# MAC-Adresse in unterschiedlichen Formaten (':' '-') speichern.
   MAC_FORMAT1=""
   for((i=0;i<${#MAC_ADR};i+=2)); do MAC_FORMAT1=$MAC_FORMAT1\\x${MAC_ADR:$i:2}; done
 
@@ -258,9 +333,16 @@ FWFILES=$(i=0; for x in $(ls -1 *); do echo $x $x; ((i++)) ; done)
 WC=$(echo $FWFILES | wc -w)
 
 if [[ $WC -ne 0 ]]; then
-FIRMWARE=$(dialog  --title "$TITEL" --nocancel --no-tags --default-item "$FIRMWARE"\
-           --menu "Basis-Firmware (Sysupgrade)" 19 78 11 ${FWFILES[@]} \
-           3>&1 1>&2 2>&3)
+  exec 3>&1
+  AUSWAHL=$(dialog  --title "$TITEL" --nocancel --no-tags --default-item "$FIRMWARE"\
+             --menu "Basis-Firmware (Sysupgrade)" 19 78 11 ${FWFILES[@]} \
+             3>&1 1>&2 2>&3)
+  response=$?
+  if [[ $response == "255" ]] || [[ $response == "1" ]]; then
+    return
+  fi
+  FIRMWARE=$AUSWAHL
+
 else
   dialog --title "\Z1Fehler" --colors \
          --msgbox "\nDer Ordner \Zb./$FIRMWAREDIRECTORY\Zn enthält keine Dateien." 8 78
@@ -279,8 +361,9 @@ dialog --title "$TITEL" --nocancel \
                "Flash-Größe:"  4 2 "$FLASHSIZE"         4 15  -4 0 \
                "Basis-FW:"     5 2 "${FIRMWARE:0:57}"   5 15 -60 0 \
                ""              6 2 "${FIRMWARE:57:120}" 6 15 -60 0 \
-               "Hardware-ID:"  9 2 "${HWID//x/}"        9 15 -32 0 \
-               "(berechnet)"  10 2 ""                   9 15 0 0 \
+               "Hardware-ID:"  8 2 "${HWID//x/}"        8 15 -32 0 \
+               "(berechnet)"   9 2 ""                   9 15 0 0 \
+               "Programmer":   11 2 "$FLASHROM_PROGRAMMER_PARAMETER" 11 15 -60 0 \
                3>&1 1>&2 2>&3
 }
 
@@ -305,14 +388,14 @@ else
                     3>&1 1>&2 2>&3)
 
   response=$?
-  if [[ $response == "255" ]] || [[ $response == "1" ]]; then 
+  if [[ $response == "255" ]] || [[ $response == "1" ]]; then
     return
   fi
-  
-  if [[ $PASSWORD == "" ]]; then
+
+  if [[ $SUDO_CMD != "" ]] && [[ $PASSWORD == "" ]]; then
     UI_passwort
   fi
-  
+
   dialog --title "$TITEL" \
          --prgbox "
          echo
@@ -326,7 +409,7 @@ else
          echo Abarbeitung abgeschlossen.
          echo Bitte obige Text-Ausgabe überprüfen!
          " 19 79
-  
+
 fi
 
 }
@@ -367,7 +450,7 @@ if [ -f "$DUMPFILENAME" ]; then
   esac
 fi
 
-if [[ $PASSWORD == "" ]]; then
+if [[ $SUDO_CMD != "" ]] && [[ $PASSWORD == "" ]]; then
  UI_passwort
 fi
 
@@ -465,7 +548,7 @@ if [ ! -f "$INFILE" ]; then
   return
 fi
 
-if [[ $PASSWORD == "" ]]; then
+if [[ $SUDO_CMD != "" ]] && [[ $PASSWORD == "" ]]; then
   UI_passwort
 fi
 
@@ -514,7 +597,7 @@ cd "$UBOOTDIRECTORY"
 # Funktion: Test, ob der Flashbaustein elektrisch korrekt kontaktiert ist
 #-------------------------------------------------------------------------------
 linktest() {
-if [[ $PASSWORD == "" ]]; then
+if [[ $SUDO_CMD != "" ]] && [[ $PASSWORD == "" ]]; then
   UI_passwort
 fi
 
