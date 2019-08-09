@@ -1,8 +1,10 @@
-## TL-WR841N Flash Dumper
+# TL-WR841N Flash Dumper (für Linux/macOS)
 Mit dem Skript `flashdumper.sh` können die Befehlsfolgen aus dem c't Artkile ["Organspende -
 TP-Link WR841N: RAM und Flash aufrüsten"](https://www.heise.de/select/ct/2019/14/1561986310067151) halbautomatisiert abgearbeitet werden.
 
-Das Skript ist z.Z. nur für die Verwendung auf einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen SPI-Kontaktierung, vorgesehen.
+Das vom Skript genutzte Tool `flashrom` unterstützt unterschiedlichste Flash-Programmer.  
+Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GPIO-Kontaktierung, werden auch viele kostengünstige USB-Programmer unterstützt (wie z.B. ein CH341a-Programmer). Dieses ermöglicht das einfache Programmieren von Flash-Bausteinen mit einem Linux oder macOS Computer. Das Skript ist in Bezug auf die Programmer-Hardware leicht erweiterbar.
+
 
 
 - Das Skript fragt für die Benutzung des Tools `"flashrom"` das Sudo-Passwort ab. Das Passwort wird nicht gespeichert.
@@ -17,7 +19,8 @@ Das Skript ist z.Z. nur für die Verwendung auf einem Raspberry Pi, in Kombinati
 ![](https://user-images.githubusercontent.com/1434390/62417465-6e8ec500-b650-11e9-8e13-fa6db153b994.png)
 ---
 
-# Abhängigkeiten
+## Abhängigkeiten
+### Debian
 `"dialog"` muß installiert sein.
 ```
 sudo apt update && sudo apt install dialog
@@ -30,4 +33,15 @@ cd
 git clone https://github.com/flashrom/flashrom
 cd flashrom
 make && sudo make install
+```
+
+### macOS (Homebrew) 
+`"dialog"` muß installiert sein.
+```
+brew install dialog
+```
+
+Das Tool `"flashrom"` muss installiert sein.
+```
+brew install flashrom
 ```
