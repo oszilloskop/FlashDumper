@@ -31,9 +31,9 @@ INTERFACECONFIGFILENAME="$WORKINGDIRECTORY/interface.cfg"
 #-------------------------------------------------------------------------------
 # UI Dialog Defaults
 #-------------------------------------------------------------------------------
-TITEL="Flash-Dump-Tool für TL-WR841 Hardware-Mods"
+TITEL="Flash-Dump-Tool für TL-WR841 Speicher-Mods"
 UI_ITEM_HM="setup"
-UI_ITEM_SM="programmer"
+UI_ITEM_SM="download"
 MAC_ADR="tbd"
 MAC_FORMAT1="tbd"
 MAC_FORMAT2="tbd"
