@@ -5,10 +5,8 @@ TP-Link WR841N: RAM und Flash aufrüsten"](https://www.heise.de/select/ct/2019/1
 Das vom Skript genutzte Tool `flashrom` unterstützt unterschiedlichste Flash-Programmer.  
 Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GPIO-Kontaktierung, werden auch viele kostengünstige USB-Programmer unterstützt (wie z.B. ein CH341a-Programmer). Dieses ermöglicht das einfache Programmieren von Flash-Bausteinen mit einem Linux oder macOS Computer. Das Skript ist in Bezug auf die Programmer-Hardware leicht erweiterbar.
 
-
-
-- Das Skript fragt für die Benutzung des Tools `"flashrom"` das Sudo-Passwort ab. Das Passwort wird nicht gespeichert.
-- Das Skript ermöglicht automatisierte das Herunterladen von U-Boot-Bootloader-Images aus dem Internet.
+- Unterschiedlicheste Flash-Programmer können verwendet werden.
+- Das Skript ermöglicht automatisiert das Herunterladen von U-Boot-Bootloader-Images aus dem Internet.
 - Zu verwendene Freifunk-Sysupgrade-Images müssen vorab manuell in einen Ordner abgelegt werden.
 - Das Skript speichert die ausgelesenen Router-Flash-Dumps und die generierten Speicherabbilder in separaten Ordner.
 - Bereits abgespeicherte Speicherabbilder können nachträglich zum Flashen verwendet werden.
