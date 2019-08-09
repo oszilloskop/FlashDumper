@@ -223,7 +223,7 @@ if [[ $response == "255" ]] || [[ $response == "1" ]]; then
 fi
 
 FLASHROM_PROGRAMMER=$AUSWAHL
-FLASHROM_PROGRAMMER_PARAMETER=""
+FLASHROM_PROGRAMMER_PARAMETER="$FLASHROM_PROGRAMMER"
 SUDO_CMD=""
 
 if [[ $FLASHROM_PROGRAMMER == "linux_spi" ]]; then
