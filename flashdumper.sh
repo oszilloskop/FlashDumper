@@ -155,10 +155,10 @@ do
 
   UI_ITEM_SM=$( dialog --title "$TITEL" --notags --cancel-button "Zurück" --default-item "$UI_ITEM_SM" \
                 --menu "Setup" 19 78 11 \
-                "programmer" "Auswahl des Flash-Programmer-Interface" \
-                "linktest"   "Elektrische Verbindung zum Flash-Baustein testen" \
                 "download"   "Download aller 841'er U-Boot Bootloader (Internet notwendig)" \
-                "passwort"   "Eingabe des Raspberry Pi 'sudo'-Passwortes" \
+                "programmer" "Auswahl des Programmer-Interfaces" \
+                "linktest"   "Elektrische Verbindung zum Flash-Baustein testen" \
+                "passwort"   "Nur für Raspberry Pi SPI: Eingabe 'sudo'-Passwortes" \
                 3>&1 1>&2 2>&3)
 
 response=$?
@@ -167,14 +167,14 @@ if [[ $response == "255" ]] || [[ $response == "1" ]]; then
 fi
 
   case "$UI_ITEM_SM" in
+    download)
+                download
+                ;;  
     programmer)
                 UI_programmer
                 ;;
     linktest)
                 linktest
-                ;;
-    download)
-                download
                 ;;
     passwort)
                 UI_passwort
@@ -189,7 +189,7 @@ done
 exec 3>&1
 UI_passwort() {
 PASSWORD=$(dialog --title "$TITEL" --cancel-button "Zurück" --insecure \
-           --passwordbox "Das Tool 'flashrom' muss mit Root-Rechten ausgeführt werden. Dafür wird das sudo-Passwort benötigt." 9 78 $PASSWORD \
+           --passwordbox "Das Tool 'flashrom' muss aktuell mit Root-Rechten ausgeführt werden. Dafür wird das sudo-Passwort benötigt." 9 78 $PASSWORD \
            3>&1 1>&2 2>&3)
 
 response=$?
