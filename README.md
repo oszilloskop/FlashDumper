@@ -1,8 +1,8 @@
 # TL-WR841N Flash Dumper (für Linux/macOS)
-Mit dem Skript `flashdumper.sh` können die Befehlsfolgen aus dem c't Artkile ["Organspende -
+Mit dem Skript `'flashdumper.sh'` können die Befehlsfolgen aus dem c't Artkile ["Organspende -
 TP-Link WR841N: RAM und Flash aufrüsten"](https://www.heise.de/select/ct/2019/14/1561986310067151) halbautomatisiert abgearbeitet werden.
 
-Das vom Skript genutzte Tool `flashrom` unterstützt unterschiedlichste Flash-Programmer.  
+Das vom Skript genutzte Tool `'flashrom'` unterstützt unterschiedlichste Flash-Programmer.  
 Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GPIO-Kontaktierung, werden auch viele kostengünstige USB-Programmer unterstützt (wie z.B. CH341a-basierte Programmer). Dieses ermöglicht das einfache Programmieren von Flash-Bausteinen mit einem Linux oder macOS Computer. Das Skript ist in Bezug auf die Programmer-Hardware leicht erweiterbar.
 
 - **Unterschiedlicheste Flash-Programmer können verwendet werden.**
