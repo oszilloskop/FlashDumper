@@ -86,7 +86,6 @@ do
                 --menu "Hauptmenü" 20 78 13 \
                 "setup"             "Setup" \
                 "linktest"          "Elektrische Verbindung zum Flash-Baustein testen" \
-                "beschreiben_liste" "Optional einen Flash-Baustein mit Speicherabbild aus Ordner beschreiben" \
                 "router"            "Auswahl des Router-Modells" \
                 "mac_manuell"       "MAC-Adresse des Routers" \
                 "flashsize"         "Speicherkapazität des neuen Flash-Bausteins" \
@@ -96,10 +95,11 @@ do
                 "erstellen"         "Neues Flash-Speicherabbild generieren" \
                 "beschreiben"       "Neuen Flash-Baustein mit aktuell generiertem Speicherabbild beschreiben" \
                 "reset"             "Router-Angaben zurücksetzen" \
+                "beschreiben_liste" "Optional einen Flash-Baustein mit Speicherabbild aus Ordner beschreiben" \
                 3>&1 1>&2 2>&3)
 
 response=$?
-if [[ $response == "255" ]] || [[ $response == "1" ]]; then 
+if [[ $response == "255" ]] || [[ $response == "1" ]]; then
   exit
 fi
 
@@ -169,7 +169,7 @@ fi
   case "$UI_ITEM_SM" in
     download)
                 download
-                ;;  
+                ;;
     programmer)
                 UI_programmer
                 ;;
@@ -193,7 +193,7 @@ PASSWORD=$(dialog --title "$TITEL" --cancel-button "Zurück" --insecure \
            3>&1 1>&2 2>&3)
 
 response=$?
-if [[ $response == "255" ]] || [[ $response == "1" ]]; then 
+if [[ $response == "255" ]] || [[ $response == "1" ]]; then
   PASSWORD=""
 fi
 
@@ -207,7 +207,8 @@ exec 3>&1
 AUSWAHL=$(dialog --title "$TITEL" --notags --nocancel --default-item "$FLASHROM_PROGRAMMER"\
            --menu "Flash-Programmer-Interface" 19 78 10 \
            "linux_spi"      "Zugriff über Raspberry Pi GPIO (default)" \
-           "dummy"          "Dummy-Programmer mit simuliertem 4MByte Flash-Baustein" \
+           "dummy_4MB"      "Dummy-Programmer mit simuliertem 4MByte Flash-Baustein" \
+           "dummy_8MB"      "Dummy-Programmer mit simuliertem 16MByte Flash-Baustein" \
            "ch341a_spi"     "USB-Programmer mit CH341A-Baustein" \
            "ft2232_spi"     "USB-Programmer mit ft2232-Baustein" \
            "dediprog"       "USB-Programmer Dediprog SF100" \
@@ -227,11 +228,14 @@ FLASHROM_PROGRAMMER_PARAMETER="$FLASHROM_PROGRAMMER"
 SUDO_CMD=""
 
 if [[ $FLASHROM_PROGRAMMER == "linux_spi" ]]; then
-  FLASHROM_PROGRAMMER_PARAMETER="$FLASHROM_PROGRAMMER:dev=/dev/spidev0.0,spispeed=1000"
+  FLASHROM_PROGRAMMER_PARAMETER="$linux_spi:dev=/dev/spidev0.0,spispeed=1000"
   SUDO_CMD="sudo -S"
 
-elif [[ $FLASHROM_PROGRAMMER == "dummy" ]]; then
-  FLASHROM_PROGRAMMER_PARAMETER="$FLASHROM_PROGRAMMER:emulate=SST25VF032B"
+elif [[ $FLASHROM_PROGRAMMER == "dummy_4MB" ]]; then
+  FLASHROM_PROGRAMMER_PARAMETER="dummy:emulate=SST25VF032B"
+
+elif [[ $FLASHROM_PROGRAMMER == "dummy_8MB" ]]; then
+  FLASHROM_PROGRAMMER_PARAMETER="dummy:emulate=MX25L6436 -c MX25L6405"
 
 fi
 
@@ -291,6 +295,10 @@ EINGABE=$(dialog --title "$TITEL" --nocancel \
               3>&1 1>&2 2>&3)
 response=$?
 if [[ $response == "255" ]] || [[ $response == "1" ]]; then
+  # ESC-Taste führt zum löschen der MAC-Adresse. Ist ein mittelmäßiger Kompromiss.
+  MAC_ADR="tbd"
+  MAC_FORMAT1="tbd"
+  MAC_FORMAT2="tbd"
   return
 fi
 
@@ -299,6 +307,8 @@ MAC_ADR="$EINGABE"
 MAC_ADR=$(echo "${MAC_ADR//:/}")
 MAC_ADR=$(echo "${MAC_ADR//-/}")
 MAC_ADR=$(echo "${MAC_ADR// /}")
+
+MAC_FORMAT2=$EINGABE   # Vorbereiten für neue Eingabe
 
 if [[ ! $MAC_ADR =~ ^[a-fA-F0-9]+$ ]]; then
   dialog --title "\Z1Fehler" --colors \
@@ -309,6 +319,7 @@ fi
 if [ ${#MAC_ADR} -ne 12 ]; then
   dialog --title "\Z1Fehler" --colors \
          --msgbox "\nDie eingegebene MAC-Adresse ist zu lang oder zu kurz." 8 78
+
   UI_mac_adr  # Erneute Eingabeaufforderung
 else
 
@@ -404,7 +415,7 @@ else
          echo
          echo Bitte mehrere Minuten warten...
          echo
-         echo "$PASSWORD" | $SUDO_CMD flashrom -p "$FLASHROM_PROGRAMMER_PARAMETER" -w $ABBILD
+         echo "$PASSWORD" | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER -w $ABBILD
          echo
          echo Abarbeitung abgeschlossen.
          echo Bitte obige Text-Ausgabe überprüfen!
@@ -460,11 +471,11 @@ dialog --title "$TITEL" \
        echo Bitte mehrere Minuten warten...
        echo
        echo Lesen:
-       echo "$PASSWORD" | $SUDO_CMD flashrom -p "$FLASHROM_PROGRAMMER_PARAMETER" -r $DUMPFILENAME
+       echo "$PASSWORD" | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER -r $DUMPFILENAME
        echo "$PASSWORD" | $SUDO_CMD chown $USER: "$DUMPFILENAME"
        echo
        echo Verify:
-       echo "$PASSWORD" | $SUDO_CMD flashrom -p "$FLASHROM_PROGRAMMER_PARAMETER" -v $DUMPFILENAME
+       echo "$PASSWORD" | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER -v $DUMPFILENAME
        echo
        echo Die Dump-Datei wurde abgespeichert als
        echo ./$FLASHDUMPDIRECTORY/$ROUTERFOLDER/$DUMPFILENAME
@@ -560,7 +571,7 @@ fi
          echo
          echo Bitte mehrere Minuten warten...
          echo
-         echo "$PASSWORD" | $SUDO_CMD flashrom -p "$FLASHROM_PROGRAMMER_PARAMETER" -w $INFILE
+         echo "$PASSWORD" | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER -w $INFILE
          echo
          echo Abarbeitung abgeschlossen.
          echo Bitte obige Text-Ausgabe überprüfen!
@@ -605,7 +616,7 @@ dialog --title "$TITEL" \
        --prgbox "
        echo Bitte warten...
        echo
-       echo $PASSWORD | $SUDO_CMD flashrom -p "$FLASHROM_PROGRAMMER_PARAMETER"
+       echo $PASSWORD | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER
        echo
        echo Abarbeitung abgeschlossen.
        echo Bitte obige Text-Ausgabe überprüfen!
