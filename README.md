@@ -11,8 +11,8 @@ Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GP
 - Das Skript speichert die ausgelesenen Router-Flash-Dumps und die generierten Speicherabbilder in separaten Ordner.
 - Bereits abgespeicherte Speicherabbilder können nachträglich zum Flashen verwendet werden.
 
-![](https://user-images.githubusercontent.com/1434390/62807235-29a5db00-baf5-11e9-93dd-88291302af7a.png)
-![](https://user-images.githubusercontent.com/1434390/62804083-7df88d00-baec-11e9-8b39-40353d07ba61.png)
+![](https://user-images.githubusercontent.com/1434390/62817023-34ca2c80-bb30-11e9-90f4-fe63b43a94e4.png)
+![](https://user-images.githubusercontent.com/1434390/62817024-372c8680-bb30-11e9-8d0b-a8d952e17b32.png)
 
 ---
 
