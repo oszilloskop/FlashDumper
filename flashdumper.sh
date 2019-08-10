@@ -158,7 +158,7 @@ do
                 "programmer" "Auswahl des Programmer-Interfaces" \
                 "download"   "Download aller 841'er U-Boot Bootloader (Internet notwendig)" \
                 "linktest"   "Elektrische Verbindung zum Flash-Baustein testen" \
-                "passwort"   "Nur für Raspberry Pi SPI: Eingabe 'sudo'-Passwortes" \
+                "passwort"   "Eingabe 'sudo'-Passwort (nur notwendig bei Raspberry Pi SPI)" \
                 3>&1 1>&2 2>&3)
 
 response=$?
