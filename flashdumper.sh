@@ -155,8 +155,8 @@ do
 
   UI_ITEM_SM=$( dialog --title "$TITEL" --notags --cancel-button "Zurück" --default-item "$UI_ITEM_SM" \
                 --menu "Setup" 19 78 11 \
-                "download"   "Download aller 841'er U-Boot Bootloader (Internet notwendig)" \
                 "programmer" "Auswahl des Programmer-Interfaces" \
+                "download"   "Download aller 841'er U-Boot Bootloader (Internet notwendig)" \
                 "linktest"   "Elektrische Verbindung zum Flash-Baustein testen" \
                 "passwort"   "Nur für Raspberry Pi SPI: Eingabe 'sudo'-Passwortes" \
                 3>&1 1>&2 2>&3)
@@ -167,11 +167,11 @@ if [[ $response == "255" ]] || [[ $response == "1" ]]; then
 fi
 
   case "$UI_ITEM_SM" in
-    download)
-                download
-                ;;
     programmer)
                 UI_programmer
+                ;;
+    download)
+                download
                 ;;
     linktest)
                 linktest
