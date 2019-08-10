@@ -208,7 +208,7 @@ AUSWAHL=$(dialog --title "$TITEL" --notags --nocancel --default-item "$FLASHROM_
            --menu "Flash-Programmer-Interface" 19 78 10 \
            "linux_spi"      "Zugriff über Raspberry Pi GPIO (default)" \
            "dummy_4MB"      "Dummy-Programmer mit simuliertem 4MByte Flash-Baustein" \
-           "dummy_8MB"      "Dummy-Programmer mit simuliertem 16MByte Flash-Baustein" \
+           "dummy_8MB"      "Dummy-Programmer mit simuliertem 8MByte Flash-Baustein" \
            "ch341a_spi"     "USB-Programmer mit CH341A-Baustein" \
            "ft2232_spi"     "USB-Programmer mit ft2232-Baustein" \
            "dediprog"       "USB-Programmer Dediprog SF100" \
