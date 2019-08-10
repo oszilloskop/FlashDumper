@@ -2,14 +2,16 @@
 Mit dem Skript `'flashdumper.sh'` können die Befehlsfolgen aus dem c't Artkile ["Organspende -
 TP-Link WR841N: RAM und Flash aufrüsten"](https://www.heise.de/select/ct/2019/14/1561986310067151) halbautomatisiert abgearbeitet werden.
 
-Das vom Skript genutzte Tool `'flashrom'` unterstützt unterschiedlichste Flash-Programmer.  
-Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GPIO-Kontaktierung, werden auch viele kostengünstige USB-Programmer unterstützt (wie z.B. CH341a-basierte Programmer). Dieses ermöglicht das einfache Programmieren von Flash-Bausteinen mit einem Linux oder macOS Computer. Das Skript ist in Bezug auf die Programmer-Hardware leicht erweiterbar.
+### Skript-Eigenschaften
 
 - **Unterschiedlicheste Flash-Programmer können verwendet werden.**
 - Das Skript ermöglicht automatisiert das Herunterladen von U-Boot-Bootloader-Images aus dem Internet.
-- Zu verwendene Freifunk-Sysupgrade-Images müssen vorab manuell in einen Ordner abgelegt werden.
-- Das Skript speichert die ausgelesenen Router-Flash-Dumps und die generierten Speicherabbilder in separaten Ordner.
+- Das Skript speichert die ausgelesenen Router-Flash-Dumps und die generierten Speicherabbilder in separat benannten Ordner.
 - Bereits abgespeicherte Speicherabbilder können nachträglich zum Flashen verwendet werden.
+- Zu verwendene Freifunk-Sysupgrade-Images müssen vorab manuell in einen Ordner abgelegt werden.
+
+Das im Skript verwendete Tool `'flashrom'` unterstützt unterschiedlichste Flash-Programmer.  
+Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GPIO-Kontaktierung, können weiterhin viele kostengünstige USB-Programmer verwendet werden (wie z.B. CH341a-basierte Programmer). Dieses ermöglicht das einfache Programmieren von Flash-Bausteinen mit einem Linux oder macOS Computer. Das Skript ist in Bezug auf die Programmer-Hardware leicht erweiterbar.
 
 ![](https://user-images.githubusercontent.com/1434390/62817023-34ca2c80-bb30-11e9-90f4-fe63b43a94e4.png)
 ![](https://user-images.githubusercontent.com/1434390/62817024-372c8680-bb30-11e9-8d0b-a8d952e17b32.png)
