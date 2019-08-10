@@ -3,7 +3,7 @@ Mit dem Skript `flashdumper.sh` können die Befehlsfolgen aus dem c't Artkile ["
 TP-Link WR841N: RAM und Flash aufrüsten"](https://www.heise.de/select/ct/2019/14/1561986310067151) halbautomatisiert abgearbeitet werden.
 
 Das vom Skript genutzte Tool `flashrom` unterstützt unterschiedlichste Flash-Programmer.  
-Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GPIO-Kontaktierung, werden auch viele kostengünstige USB-Programmer unterstützt (wie z.B. ein CH341a-Programmer). Dieses ermöglicht das einfache Programmieren von Flash-Bausteinen mit einem Linux oder macOS Computer. Das Skript ist in Bezug auf die Programmer-Hardware leicht erweiterbar.
+Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GPIO-Kontaktierung, werden auch viele kostengünstige USB-Programmer unterstützt (wie z.B. CH341a-basierte Programmer). Dieses ermöglicht das einfache Programmieren von Flash-Bausteinen mit einem Linux oder macOS Computer. Das Skript ist in Bezug auf die Programmer-Hardware leicht erweiterbar.
 
 - Unterschiedlicheste Flash-Programmer können verwendet werden.
 - Das Skript ermöglicht automatisiert das Herunterladen von U-Boot-Bootloader-Images aus dem Internet.
