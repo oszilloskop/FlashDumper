@@ -530,7 +530,8 @@ dd conv=notrunc  if=uboot.bin of="$OUTFILE"
 dd conv=notrunc obs=4k seek=32 if=gluonsysupgrade.bin of="$OUTFILE"
 printf $MAC_FORMAT1 | dd conv=notrunc ibs=1 obs=256 seek=508 count=8 of="$OUTFILE"
 printf $HWID | dd conv=notrunc ibs=1 obs=256 seek=509 count=8 of="$OUTFILE"
-echo "sync..."
+echo "sync"
+echo "wait..."
 sync
 dialog --title "$TITEL" --colors\
        --msgbox "\nDas generierte $FLASHSIZE Flash-Speicherabbild wurde abgespeichert als\n\Zb./$OUTFILE_MSGBOX\Zn" 18 79
