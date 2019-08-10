@@ -228,7 +228,7 @@ FLASHROM_PROGRAMMER_PARAMETER="$FLASHROM_PROGRAMMER"
 SUDO_CMD=""
 
 if [[ $FLASHROM_PROGRAMMER == "linux_spi" ]]; then
-  FLASHROM_PROGRAMMER_PARAMETER="$linux_spi:dev=/dev/spidev0.0,spispeed=1000"
+  FLASHROM_PROGRAMMER_PARAMETER="linux_spi:dev=/dev/spidev0.0,spispeed=1000"
   SUDO_CMD="sudo -S"
 
 elif [[ $FLASHROM_PROGRAMMER == "dummy_4MB" ]]; then
