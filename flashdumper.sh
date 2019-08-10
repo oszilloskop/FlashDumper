@@ -157,7 +157,7 @@ do
                 --menu "Setup" 19 78 11 \
                 "programmer" "Auswahl des Programmer-Interfaces" \
                 "linktest"   "Elektrische Verbindung zum Flash-Baustein testen" \
-                "download"   "Download aller 841'er U-Boot Bootloader (Internet notwendig)" \
+                "download"   "Download aller TL-WR841N U-Boot Bootloader (Internet notwendig)" \
                 "passwort"   "Eingabe 'sudo'-Passwort (nur notwendig bei Raspberry Pi SPI)" \
                 3>&1 1>&2 2>&3)
 
