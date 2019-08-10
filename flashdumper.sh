@@ -213,7 +213,6 @@ AUSWAHL=$(dialog --title "$TITEL" --notags --nocancel --default-item "$FLASHROM_
            "usbblaster_spi" "USB-Programmer Altera USB-Blaster" \
            "pickit2_spi"    "USB-Programmer Microchip PICkit2" \
            "digilent_spi"   "USB-Programmer iCEblink40 development boards" \
-           "serprog"        "Programmer mit serprog-Unterstützung (u.a. einige Arduino-Boards)" \
            "dummy_4MB"      "Virtueller Programmer mit simuliertem 4MByte Flash-Baustein" \
            "dummy_8MB"      "virtueller Programmer mit simuliertem 8MByte Flash-Baustein" \
            3>&1 1>&2 2>&3)
