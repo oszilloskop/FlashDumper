@@ -12,7 +12,6 @@ Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GP
 - Bereits abgespeicherte Speicherabbilder können nachträglich zum Flashen verwendet werden.
 
 ![](https://user-images.githubusercontent.com/1434390/62807235-29a5db00-baf5-11e9-93dd-88291302af7a.png)
-![](https://user-images.githubusercontent.com/1434390/62804073-776a1580-baec-11e9-8e26-a88920ae27c5.png)
 ![](https://user-images.githubusercontent.com/1434390/62804083-7df88d00-baec-11e9-8b39-40353d07ba61.png)
 
 ---
