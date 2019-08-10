@@ -19,12 +19,12 @@ Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GP
 
 ## Abhängigkeiten
 ### Debian
-`"dialog"` muß installiert sein.
+`'dialog'` muß installiert sein.
 ```
 sudo apt update && sudo apt install dialog
 ```
 
-Das Tool `"flashrom"` muss nach der Anleitung des c't Artikels installiert sein.
+Das Tool `'flashrom'` muss nach der Anleitung des c't Artikels installiert sein.
 ```
 sudo apt update &&  sudo apt install git libpci-dev libusb-1.0 libusb-dev
 cd
@@ -34,12 +34,12 @@ make && sudo make install
 ```
 
 ### macOS (Homebrew) 
-`"dialog"` muß installiert sein.
+`'dialog'` muß installiert sein.
 ```
 brew install dialog
 ```
 
-Das Tool `"flashrom"` muss installiert sein.
+Das Tool `'flashrom'` muss installiert sein.
 ```
 brew install flashrom
 ```
