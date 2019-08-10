@@ -33,7 +33,7 @@ INTERFACECONFIGFILENAME="$WORKINGDIRECTORY/interface.cfg"
 #-------------------------------------------------------------------------------
 TITEL="Flash-Dump-Tool für TL-WR841 Speicher-Mods"
 UI_ITEM_HM="setup"
-UI_ITEM_SM="download"
+UI_ITEM_SM="programmer"
 MAC_ADR="tbd"
 MAC_FORMAT1="tbd"
 MAC_FORMAT2="tbd"
