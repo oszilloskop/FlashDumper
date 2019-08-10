@@ -206,9 +206,7 @@ UI_programmer() {
 exec 3>&1
 AUSWAHL=$(dialog --title "$TITEL" --notags --nocancel --default-item "$FLASHROM_PROGRAMMER"\
            --menu "Flash-Programmer-Interface" 19 78 10 \
-           "linux_spi"      "Zugriff über Raspberry Pi GPIO (default)" \
-           "dummy_4MB"      "Dummy-Programmer mit simuliertem 4MByte Flash-Baustein" \
-           "dummy_8MB"      "Dummy-Programmer mit simuliertem 8MByte Flash-Baustein" \
+           "linux_spi"      "Raspberry Pi GPIO (default)" \
            "ch341a_spi"     "USB-Programmer mit CH341A-Baustein" \
            "ft2232_spi"     "USB-Programmer mit ft2232-Baustein" \
            "dediprog"       "USB-Programmer Dediprog SF100" \
@@ -216,6 +214,8 @@ AUSWAHL=$(dialog --title "$TITEL" --notags --nocancel --default-item "$FLASHROM_
            "pickit2_spi"    "USB-Programmer Microchip PICkit2" \
            "digilent_spi"   "USB-Programmer iCEblink40 development boards" \
            "serprog"        "Programmer mit serprog-Unterstützung (u.a. einige Arduino-Boards)" \
+           "dummy_4MB"      "Virtueller Programmer mit simuliertem 4MByte Flash-Baustein" \
+           "dummy_8MB"      "virtueller Programmer mit simuliertem 8MByte Flash-Baustein" \
            3>&1 1>&2 2>&3)
 
 response=$?
