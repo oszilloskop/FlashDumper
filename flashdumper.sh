@@ -470,7 +470,8 @@ fi
 USER=$(whoami)
 dialog --title "$TITEL" \
        --prgbox "
-       echo 4MB auslesen: Bitte ca. 1 Minuten warten...
+       echo 4MB Flash-Baustein auslesen.
+       echo Bitte ca. 1 Minuten warten...
        echo
        echo Lesen:
        echo "$PASSWORD" | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER -r $DUMPFILENAME
