@@ -91,7 +91,7 @@ do
                 "flashsize"         "Speicherkapazität des neuen Flash-Bausteins" \
                 "firmware"          "Zu verwendende Basis-Firmware (OpenWrt/Gluon Sysupgrade-Firmware)" \
                 "auflistung"        "Zusammenfassung der Einstellungen" \
-                "auslesen"          "Alten Flash-Baustein auslesen (inkl. Verify) und den Inhalt speichern" \
+                "auslesen"          "Alten 4MB Flash-Baustein auslesen (inkl. Verify) und Inhalt speichern" \
                 "erstellen"         "Neues Flash-Speicherabbild generieren" \
                 "beschreiben"       "Neuen Flash-Baustein mit aktuell generiertem Speicherabbild beschreiben" \
                 "reset"             "Router-Angaben zurücksetzen" \
@@ -412,7 +412,7 @@ else
   dialog --title "$TITEL" \
          --prgbox "
          echo
-         echo Beschreiben des neuen Flash-Bausteins mit dem Inhalt aus
+         echo Beschreiben des neuen $FLASHSIZE Flash-Bausteins mit dem Inhalt aus
          echo "./$NEWFLASHDIRECTORY/$ABBILD"
          echo
          echo Bitte mehrere Minuten warten...
@@ -470,7 +470,7 @@ fi
 USER=$(whoami)
 dialog --title "$TITEL" \
        --prgbox "
-       echo Bitte mehrere Minuten warten...
+       echo 4MB auslesen: Bitte ca. 1 Minuten warten...
        echo
        echo Lesen:
        echo "$PASSWORD" | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER -r $DUMPFILENAME
@@ -569,7 +569,7 @@ fi
   dialog --title "$TITEL" \
          --prgbox "
          echo
-         echo Beschreiben des neuen Flash-Bausteins mit
+         echo Beschreiben des neuen $FLASHSIZE Flash-Bausteins mit
          echo $INFILE
          echo
          echo Bitte mehrere Minuten warten...
