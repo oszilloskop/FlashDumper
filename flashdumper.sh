@@ -159,6 +159,7 @@ do
                 "linktest"   "Elektrische Verbindung zum Flash-Baustein testen" \
                 "download"   "Download aller TL-WR841N U-Boot Bootloader (Internet notwendig)" \
                 "passwort"   "Eingabe 'sudo'-Passwort (nur notwendig bei Raspberry Pi SPI)" \
+                "zurueck"    "<-- Zurück"
                 3>&1 1>&2 2>&3)
 
 response=$?
@@ -179,6 +180,8 @@ fi
     passwort)
                 UI_passwort
                 ;;
+    zurueck)
+                break
   esac
 done
 }
