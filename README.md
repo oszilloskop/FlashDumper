@@ -32,12 +32,12 @@ Das Skript legt eigenständig folgende Unterordner an:
 
 In den einzelnen Verzeichnissen unterhalb von `./router-flash-dumps/` werden folgende namentlich vereinheitlichte Router-spezifische Dateien abgelegt:
 
-| Dateiname                                | Inhalt                                             |
-| ------------------- | ----------------------------------------------------------------------- |
-| flashdump.bin       | Ausgelesener 4MB Flash-Dump                                             |
-| artdump.bin         | Extrahierte ART-Partition mit Kalibierungsdaten                         |
-| uboot.bin           | Router-spezifischer U-Boot-Loader                                       |
-| gluonsysuograde.bin | Basis-Firmware (Sysupgrade der zu ausgewählten OpenWrt-/Gluon-Firmware) |
+| Dateiname                                | Inhalt                                          |
+| ------------------- | -------------------------------------------------------------------- |
+| flashdump.bin       | Ausgelesener 4MB Flash-Dump                                          |
+| artdump.bin         | Extrahierte ART-Partition mit Kalibierungsdaten                      |
+| uboot.bin           | Router-spezifischer U-Boot-Loader                                    |
+| gluonsysuograde.bin | Basis-Firmware (Sysupgrade der ausgewählten OpenWrt-/Gluon-Firmware) |
 
 ---
 
