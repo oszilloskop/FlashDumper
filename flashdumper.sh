@@ -94,7 +94,7 @@ do
                 "auslesen"          "Alten 4MB Flash-Baustein auslesen (inkl. Verify) und Inhalt speichern" \
                 "erstellen"         "Neues Flash-Speicherabbild generieren" \
                 "beschreiben"       "Neuen Flash-Baustein mit aktuell generiertem Speicherabbild beschreiben" \
-                "reset"             "Router-Angaben zurücksetzen" \
+                "reset"             "Alle Router-Angaben zurücksetzen" \
                 "beschreiben_liste" "Optional einen Flash-Baustein mit Speicherabbild aus Ordner beschreiben" \
                 3>&1 1>&2 2>&3)
 
