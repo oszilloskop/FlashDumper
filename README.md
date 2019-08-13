@@ -6,7 +6,7 @@ TP-Link WR841N: RAM und Flash aufrüsten"](https://www.heise.de/select/ct/2019/1
 
 - **Unterschiedlicheste Flash-Programmer können verwendet werden.**
 - Das Skript ermöglicht automatisiert das Herunterladen von U-Boot-Bootloader-Images aus dem Internet.
-- Das Skript speichert die ausgelesenen Router-Flash-Dumps und die generierten Speicherabbilder in separat benannten Ordner.
+- Das Skript speichert die ausgelesenen Router-Flash-Dumps und die generierten Speicherabbilder in separat benannte Ordner.
 - Bereits abgespeicherte Speicherabbilder können nachträglich zum Flashen verwendet werden.
 - Zu verwendene Freifunk-Sysupgrade-Images müssen vorab manuell in einen Ordner abgelegt werden.
 
