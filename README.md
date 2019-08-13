@@ -13,8 +13,8 @@ TP-Link WR841N: RAM und Flash aufrüsten"](https://www.heise.de/select/ct/2019/1
 Das im Skript verwendete Tool `'flashrom'` unterstützt unterschiedlichste Flash-Programmer.  
 Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GPIO-Kontaktierung, können weiterhin viele kostengünstige USB-Programmer verwendet werden (wie z.B. CH341a-basierte Programmer). Dieses ermöglicht das einfache Programmieren von Flash-Bausteinen mit einem Linux oder macOS Computer. Das Skript ist in Bezug auf die Programmer-Hardware leicht erweiterbar.
 
-![](https://user-images.githubusercontent.com/1434390/62817023-34ca2c80-bb30-11e9-90f4-fe63b43a94e4.png)
-![](https://user-images.githubusercontent.com/1434390/62817024-372c8680-bb30-11e9-8d0b-a8d952e17b32.png)
+![](https://user-images.githubusercontent.com/1434390/62911018-1871fe00-bd83-11e9-8231-481d3d9cdc44.png)
+![](https://user-images.githubusercontent.com/1434390/62911031-1f990c00-bd83-11e9-93f5-1c2494607440.png)
 
 ---
 
