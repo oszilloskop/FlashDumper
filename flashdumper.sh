@@ -502,7 +502,7 @@ cd "$WORKINGDIRECTORY"
 
 if [[ $ROUTER == "tbd" ]] || [[ $MAC_ADR == "tbd" ]] || [[ $FLASHSIZE == "tbd" ]] || [[ $FIRMWARE == "tbd" ]] ; then
   dialog --title "\Z1Fehler" --colors \
-         --msgbox "\nDas \ZbRoutermodell\Zn,die \ZbMAC-Adresse\Zn, die \ZbFlash-Bausteingröße\Zn und/oder die \ZbBasis-Firmware\Zn wurden noch nicht vorgegeben." 8 78
+         --msgbox "\nDas \ZbRoutermodell\Zn, die \ZbMAC-Adresse\Zn, die \ZbFlash-Bausteingröße\Zn und/oder die \ZbBasis-Firmware\Zn wurden noch nicht vorgegeben." 8 78
   return
 fi
 
