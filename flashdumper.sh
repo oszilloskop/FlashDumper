@@ -415,7 +415,7 @@ else
          echo Beschreiben des neuen $FLASHSIZE Flash-Bausteins mit dem Inhalt aus
          echo "./$NEWFLASHDIRECTORY/$ABBILD"
          echo
-         echo Bitte mehrere Minuten warten...
+         echo Bitte ca. 5 Minuten warten...
          echo
          echo "$PASSWORD" | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER -w $ABBILD
          echo
@@ -471,7 +471,7 @@ USER=$(whoami)
 dialog --title "$TITEL" \
        --prgbox "
        echo 4MB Flash-Baustein auslesen.
-       echo Bitte ca. 1 Minuten warten...
+       echo Bitte ca. 1-2 Minuten warten...
        echo
        echo Lesen:
        echo "$PASSWORD" | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER -r $DUMPFILENAME
@@ -571,9 +571,9 @@ fi
          --prgbox "
          echo
          echo Beschreiben des neuen $FLASHSIZE Flash-Bausteins mit
-         echo $INFILE
+         echo $INFILE_MSGBOX
          echo
-         echo Bitte mehrere Minuten warten...
+         echo Bitte ca. 5 Minuten warten...
          echo
          echo "$PASSWORD" | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER -w $INFILE
          echo
