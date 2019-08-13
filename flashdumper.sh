@@ -571,7 +571,7 @@ fi
          --prgbox "
          echo
          echo Beschreiben des neuen $FLASHSIZE Flash-Bausteins mit
-         echo $INFILE_MSGBOX
+         echo ./$INFILE_MSGBOX
          echo
          echo Bitte ca. 5 Minuten warten...
          echo
