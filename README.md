@@ -2,7 +2,7 @@
 Mit dem Skript `'flashdumper.sh'` können die Befehlsfolgen aus dem c't Artkile ["Organspende -
 TP-Link WR841N: RAM und Flash aufrüsten"](https://www.heise.de/select/ct/2019/14/1561986310067151) halbautomatisiert abgearbeitet werden.
 
-### Skript-Eigenschaften
+## Skript-Eigenschaften
 
 - **Unterschiedlicheste Flash-Programmer können verwendet werden.**
 - Das Skript ermöglicht automatisiert das Herunterladen von U-Boot-Bootloader-Images aus dem Internet.
@@ -15,6 +15,26 @@ Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GP
 
 ![](https://user-images.githubusercontent.com/1434390/62911018-1871fe00-bd83-11e9-8231-481d3d9cdc44.png)
 ![](https://user-images.githubusercontent.com/1434390/62911031-1f990c00-bd83-11e9-93f5-1c2494607440.png)
+
+## Dateistruktur
+Das Skript legt eigenständig folgende Unterordner an:
+
+| Unterordner                                 | Inhalt                                                            |
+| ------------------------------------------- | ----------------------------------------------------------------- |
+| ./uboot-images/                             | Hier werden U-boot-Images geladen/erwartet                        |
+| ./basis-firmware/                           | Hier werden die Basis-Firmware-Images (Sysupgrades) erwartet      |
+| ./router-flash-dumps/wr841n-vXY-MACAdresse/ | Hier werden u.a. ausgelesene Router-spezifische Dumps abgelegt    |
+| ./flash-modified/                           | Hier werden neu generierte Router-Flash-Speicherabbilder abgelegt |
+
+
+In den einzelnen Verzeichnissen unterhalb von `./router-flash-dumps/` werden folgende namentlich vereinheitlichte Router-spezifische Dateien abgelegt:
+
+| Dateiname                                | Inhalt                                            |
+| ------------------- | ---------------------------------------------------------------------- |
+| flashdump.bin       | Ausgelesener 4MB Flash-Dump                                            |
+| artdump.bin         | Extrahierte ART-Partition mit Kalibierungsdaten                        |
+| uboot.bin           | Router-spezifischer U-Boot-Loader                                      |
+| gluonsysuograde.bin | Basis-Firmware (Sysupgrade der zu verwendenen OpenWrt-/Gluon-Firmware) |
 
 ---
 
