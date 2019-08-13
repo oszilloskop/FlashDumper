@@ -17,6 +17,9 @@ Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GP
 ![](https://user-images.githubusercontent.com/1434390/62911031-1f990c00-bd83-11e9-93f5-1c2494607440.png)
 
 ## Dateistruktur
+In der Datei `interface.cfg` werden Informationen zum eingestellten Flash-Programmer abgelegt und bei jedem Neustart wieder eingelesen.
+
+
 Das Skript legt eigenständig folgende Unterordner an:
 
 | Unterordner                                 | Inhalt                                                            |
@@ -35,8 +38,6 @@ In den einzelnen Verzeichnissen unterhalb von `./router-flash-dumps/` werden fol
 | artdump.bin         | Extrahierte ART-Partition mit Kalibierungsdaten                        |
 | uboot.bin           | Router-spezifischer U-Boot-Loader                                      |
 | gluonsysuograde.bin | Basis-Firmware (Sysupgrade der zu verwendenen OpenWrt-/Gluon-Firmware) |
-
-In der Datei `interface.cfg` werden Informationen zum eingestellten Flash-Programmer abgelegt und bei jedem Neustart wieder eingelesen.
 
 ---
 
