@@ -36,6 +36,8 @@ In den einzelnen Verzeichnissen unterhalb von `./router-flash-dumps/` werden fol
 | uboot.bin           | Router-spezifischer U-Boot-Loader                                      |
 | gluonsysuograde.bin | Basis-Firmware (Sysupgrade der zu verwendenen OpenWrt-/Gluon-Firmware) |
 
+In der Datei `interface.cfg` werden Informationen zum eingestellten Flash-Programmer abgelegt und bei jedem Neustart wieder eingelesen.
+
 ---
 
 ## Abhängigkeiten
