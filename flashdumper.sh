@@ -217,7 +217,7 @@ AUSWAHL=$(dialog --title "$TITEL" --notags --nocancel --default-item "$FLASHROM_
            "pickit2_spi"    "USB-Programmer Microchip PICkit2" \
            "digilent_spi"   "USB-Programmer iCEblink40 development boards" \
            "dummy_4MB"      "Virtueller Programmer mit simuliertem 4MByte Flash-Baustein" \
-           "dummy_8MB"      "virtueller Programmer mit simuliertem 8MByte Flash-Baustein" \
+           "dummy_8MB"      "Virtueller Programmer mit simuliertem 8MByte Flash-Baustein" \
            3>&1 1>&2 2>&3)
 
 response=$?
@@ -494,7 +494,7 @@ dialog --title "$TITEL" \
 erstellen() {
 UBOOTFILE="uboot-$ROUTER.bin"
 ROUTERFOLDER="$ROUTER-$MAC_ADR"
-OUTFILE_MSGBOX="$NEWFLASHDIRECTORY/$MAC_ADR-$ROUTER-$FLASHSIZE.bin"
+OUTFILE_MSGBOX="$NEWFLASHDIRECTORY/$ROUTER-$FLASHSIZE-$MAC_ADR.bin"
 OUTFILE="$WORKINGDIRECTORY/$OUTFILE_MSGBOX"
 
 
@@ -548,7 +548,7 @@ dialog --title "$TITEL" --colors\
 beschreiben() {
 cd "$WORKINGDIRECTORY"
 cd "$NEWFLASHDIRECTORY"
-INFILE_MSGBOX="$NEWFLASHDIRECTORY/$MAC_ADR-$ROUTER-$FLASHSIZE.bin"
+INFILE_MSGBOX="$NEWFLASHDIRECTORY/$ROUTER-$FLASHSIZE-$MAC_ADR.bin"
 INFILE="$WORKINGDIRECTORY/$INFILE_MSGBOX"
 
 if [[ $ROUTER == "tbd" ]] || [[ $MAC_ADR == "tbd" ]] || [[ $FLASHSIZE == "tbd" ]]; then
