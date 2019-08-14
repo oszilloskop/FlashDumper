@@ -17,7 +17,7 @@ Neben einem Raspberry Pi, in Kombination mit der im c't Artikel beschriebenen GP
 ![](https://user-images.githubusercontent.com/1434390/62911031-1f990c00-bd83-11e9-93f5-1c2494607440.png)
 
 ## Dateistruktur
-In der Datei `interface.cfg` werden Informationen zum eingestellten Flash-Programmer abgelegt und bei jedem Neustart wieder eingelesen.
+In der Datei `interface.cfg` werden Informationen zum eingestellten Flash-Programmer abgelegt und bei jedem Neustart wieder eingelesen. Ist die Datei nicht vorhanden, so wird sie bei Bedarf automatisch angelegt.
 
 
 Das Skript legt eigenständig folgende Unterordner an:
