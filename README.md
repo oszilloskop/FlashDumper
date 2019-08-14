@@ -37,7 +37,7 @@ In den einzelnen Verzeichnissen unterhalb von `./router-flash-dumps/` werden fol
 | flashdump.bin       | Ausgelesener 4MB Flash-Dump                                          |
 | artdump.bin         | Extrahierte ART-Partition mit Kalibierungsdaten                      |
 | uboot.bin           | Router-spezifischer U-Boot-Loader                                    |
-| gluonsysuograde.bin | Basis-Firmware (Sysupgrade der ausgewählten OpenWrt-/Gluon-Firmware) |
+| gluonsysupgrade.bin | Basis-Firmware (Sysupgrade der ausgewählten OpenWrt-/Gluon-Firmware) |
 
 ---
 
