@@ -43,6 +43,8 @@ In den einzelnen Verzeichnissen unterhalb von `./router-flash-dumps/` werden fol
 
 ## Abhängigkeiten
 ### Debian
+`'sudo'` muß installiert sein. Der aktuelle User muss entsprechend zugewiesen sein.
+
 `'dialog'` muß installiert sein.
 ```
 sudo apt update && sudo apt install dialog

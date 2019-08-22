@@ -158,7 +158,7 @@ do
                 "programmer" "Auswahl des Programmer-Interfaces" \
                 "linktest"   "Elektrische Verbindung zum Flash-Baustein testen" \
                 "download"   "Download aller TL-WR841N U-Boot Bootloader (Internet notwendig)" \
-                "passwort"   "Eingabe 'sudo'-Passwort (nur notwendig bei Raspberry Pi SPI)" \
+                "passwort"   "Eingabe 'sudo'-Passwort (notwendig unter Linux)" \
                 "zurueck"    "<-- Zurück" \
                 3>&1 1>&2 2>&3)
 
@@ -239,6 +239,10 @@ elif [[ $FLASHROM_PROGRAMMER == "dummy_4MB" ]]; then
 elif [[ $FLASHROM_PROGRAMMER == "dummy_8MB" ]]; then
   FLASHROM_PROGRAMMER_PARAMETER="dummy:emulate=MX25L6436 -c MX25L6405"
 
+# Wichtig:
+# Die folgende Abfrage MUSS immer die letzte in diesem if-else-Konstrukt sein
+elif [[ $(uname -s) == "Linux" ]]; then
+  SUDO_CMD="sudo -S"
 fi
 
 echo "$FLASHROM_PROGRAMMER" > "$INTERFACECONFIGFILENAME"
