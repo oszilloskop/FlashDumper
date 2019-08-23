@@ -9,6 +9,7 @@ histchars=
 #                Basis für die verwendeten HW-IDs ist folgender Patch für Gluon:
 #                -> https://github.com/freifunkh/site/blob/stable/patches/0003-added-TP-Link-TL-WR841ND-N-Devices-for-8M-and-16M-Va.patch
 #-------------------------------------------------------------------------------
+VERSION="v1.0"
 
 #-------------------------------------------------------------------------------
 # "flashrom"-Tool Parameter
@@ -31,7 +32,7 @@ INTERFACECONFIGFILENAME="$WORKINGDIRECTORY/interface.cfg"
 #-------------------------------------------------------------------------------
 # UI Dialog Defaults
 #-------------------------------------------------------------------------------
-TITEL="TL-WR841N Flash Dumper"
+TITEL="TL-WR841N Flash Dumper $VERSION"
 UI_ITEM_HM="setup"
 UI_ITEM_SM="programmer"
 MAC_ADR="tbd"
