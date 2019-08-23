@@ -90,11 +90,11 @@ do
                 "mac_manuell"       "MAC-Adresse des Routers" \
                 "flashsize"         "Speicherkapazität des neuen Flash-Bausteins" \
                 "firmware"          "Zu verwendende Basis-Firmware (OpenWrt/Gluon Sysupgrade-Firmware)" \
-                "auflistung"        "Zusammenfassung der Einstellungen" \
+                "auflistung"        "Zusammenfassung der Router-spezifischen Einstellungen" \
                 "auslesen"          "Alten 4MB Flash-Baustein auslesen (inkl. Verify) und Inhalt abspeichern" \
                 "erstellen"         "Neues Flash-Speicherabbild generieren" \
                 "beschreiben"       "Neuen Flash-Baustein mit aktuell generiertem Speicherabbild beschreiben" \
-                "reset"             "Alle Router-Angaben zurücksetzen" \
+                "reset"             "Zurücksetzen aller Router-spezifischen Einstellungen" \
                 "beschreiben_liste" "Optional einen Flash-Baustein mit Speicherabbild aus Ordner beschreiben" \
                 3>&1 1>&2 2>&3)
 
@@ -215,7 +215,7 @@ AUSWAHL=$(dialog --title "$TITEL" --notags --nocancel --default-item "$FLASHROM_
            "dediprog"       "USB-Programmer Dediprog SF100" \
            "usbblaster_spi" "USB-Programmer Altera USB-Blaster" \
            "pickit2_spi"    "USB-Programmer Microchip PICkit2" \
-           "digilent_spi"   "USB-Programmer iCEblink40 development boards" \
+           "digilent_spi"   "USB-Programmer iCEblink40 Development Board" \
            "dummy_4MB"      "Virtueller Programmer mit simuliertem 4MByte Flash-Baustein" \
            "dummy_8MB"      "Virtueller Programmer mit simuliertem 8MByte Flash-Baustein" \
            3>&1 1>&2 2>&3)
@@ -372,7 +372,7 @@ fi
 UI_auflistung() {
 calc_hwid
 dialog --title "$TITEL" --nocancel \
-       --form  "Zusammenfassung der Einstellungen" 19 78 11 \
+       --form  "Zusammenfassung der Router-spezifischen Einstellungen" 19 78 11 \
                "Router:"       2 2 "$ROUTER"            2 15 -10 0 \
                "MAC-Adresse:"  3 2 "$MAC_FORMAT2"       3 15 -17 0 \
                "Flash-Größe:"  4 2 "$FLASHSIZE"         4 15  -4 0 \
@@ -424,7 +424,7 @@ else
          echo "$PASSWORD" | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER -w $ABBILD
          echo
          echo Abarbeitung abgeschlossen.
-         echo Bitte obige Text-Ausgabe überprüfen!
+         echo Bitte obige Textausgabe überprüfen!
          " 19 79
 
 fi
@@ -488,7 +488,7 @@ dialog --title "$TITEL" \
        echo ./$FLASHDUMPDIRECTORY/$ROUTERFOLDER/$DUMPFILENAME
        echo
        echo Abarbeitung abgeschlossen.
-       echo Bitte obige Text-Ausgabe überprüfen!
+       echo Bitte obige Textausgabe überprüfen!
        " 19 79
 }
 
@@ -582,7 +582,7 @@ fi
          echo "$PASSWORD" | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER -w $INFILE
          echo
          echo Abarbeitung abgeschlossen.
-         echo Bitte obige Text-Ausgabe überprüfen!
+         echo Bitte obige Textausgabe überprüfen!
          " 19 79
 }
 
@@ -627,7 +627,7 @@ dialog --title "$TITEL" \
        echo $PASSWORD | $SUDO_CMD flashrom -p $FLASHROM_PROGRAMMER_PARAMETER
        echo
        echo Abarbeitung abgeschlossen.
-       echo Bitte obige Text-Ausgabe überprüfen!
+       echo Bitte obige Textausgabe überprüfen!
        " 19 79
 }
 
@@ -662,7 +662,7 @@ FLASHSIZE="tbd"
 FIRMWARE="tbd"
 
 dialog --title "\Z1Hinweis" --colors \
-         --msgbox "\nAlle Router-spezifische Parameter wurden zurückgesetzt." 8 78
+         --msgbox "\nAlle Router-spezifische Einstellungen wurden zurückgesetzt." 8 78
 }
 
 #-------------------------------------------------------------------------------
