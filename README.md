@@ -42,7 +42,7 @@ In den einzelnen Verzeichnissen unterhalb von `./router-flash-dumps/` werden fol
 ---
 
 ## Abhängigkeiten
-### Debian
+### Debian und abgeleitete Distributionen
 `'sudo'` muß installiert sein. Der aktuelle User muss entsprechend zugewiesen sein.
 
 `'dialog'` muß installiert sein.
