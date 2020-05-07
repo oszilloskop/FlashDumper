@@ -43,9 +43,9 @@ In den einzelnen Verzeichnissen unterhalb von `./router-flash-dumps/` werden fol
 
 ## Abhängigkeiten
 ### Debian und abgeleitete Distributionen
-`'sudo'` muß installiert sein. Der aktuelle User muss entsprechend zugewiesen sein.
+`'sudo'` muss installiert sein. Der aktuelle User muss entsprechend zugewiesen sein.
 
-`'dialog'` muß installiert sein.
+`'dialog'` muss installiert sein.
 ```
 sudo apt update && sudo apt install dialog
 ```
@@ -60,7 +60,7 @@ make && sudo make install
 ```
 
 ### macOS (Homebrew) 
-`'dialog'` muß installiert sein.
+`'dialog'` muss installiert sein.
 ```
 brew install dialog
 ```
